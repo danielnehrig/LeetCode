@@ -6,7 +6,6 @@ impl Solution {
             *a = (*a).max(b);
             Some(*a)
         });
-
         let backward = height
             .iter()
             .rev()
@@ -19,15 +18,14 @@ impl Solution {
             .into_iter()
             .rev();
 
-        println!("h: {:?}", height);
-        println!("f: {:?}", forward.clone().collect::<Vec<_>>());
-        println!("b: {:?}", backward.clone().collect::<Vec<_>>());
+        println!("{:?}", forward);
+        println!("{:?}", backward);
 
         forward
             .zip(backward)
-            .map(|(j, k)| j.min(k))
-            .zip(height.iter())
-            .map(|(w, &h)| w - h)
+            .map(|(a, b)| a.min(b))
+            .zip(height.clone())
+            .map(|(w, h)| w - h)
             .sum()
     }
 }
